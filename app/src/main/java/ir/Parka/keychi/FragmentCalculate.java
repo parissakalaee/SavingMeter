@@ -32,7 +32,7 @@ public class FragmentCalculate extends Fragment {
     private int yearValue, monthValue;
     private float profitValue, inflationValue;
     public int whichYear = 1;
-    public float saving = 0.0f;
+    public float savingValue = 0.0f;
     TextView txtOutput;
     private boolean isErrorSet = false;
 
@@ -152,7 +152,7 @@ public class FragmentCalculate extends Fragment {
 
         if (isCorrectYear) {
             txtOutput.setVisibility(View.VISIBLE);
-            txtOutput.setText(String.format("%,d", (int) saving));
+            txtOutput.setText(String.format("%,d", (int) savingValue));
             edtDate.displayErrorYear(null, false);
         } else {
             txtOutput.setVisibility(View.INVISIBLE);
@@ -352,15 +352,15 @@ public class FragmentCalculate extends Fragment {
             yearPrice[yearCnt] = currentPrice * (1.0f + inflation / 100.0f);
             yearState[yearCnt] = currentState * (1.0f + profit / 100.0f);
 
-            saving = ((yearPrice[yearCnt] - yearState[yearCnt]));
-            saving /= ((yearCnt + 1) * 12) + ((((yearCnt + 1) * 12) * (((yearCnt + 1) * 12) + 1)) * profit / 100.0f) / 24;
-//            Toast.makeText(getActivity().getApplicationContext(), " " + saving, Toast.LENGTH_LONG).show();
+            savingValue = ((yearPrice[yearCnt] - yearState[yearCnt]));
+            savingValue /= ((yearCnt + 1) * 12) + ((((yearCnt + 1) * 12) * (((yearCnt + 1) * 12) + 1)) * profit / 100.0f) / 24;
+//            Toast.makeText(getActivity().getApplicationContext(), " " + savingValue, Toast.LENGTH_LONG).show();
 
             currentPrice = yearPrice[yearCnt];
             currentState = yearState[yearCnt];
 
-            if (saving < minSaving) {
-                minSaving = saving;
+            if (savingValue < minSaving) {
+                minSaving = savingValue;
             } else {
                 whichYear = yearCnt + 1;
                 return false;
@@ -378,8 +378,8 @@ public class FragmentCalculate extends Fragment {
                 monthPrice[monthCnt] = saveCurrentPrice * (1.0f + (monthInflation * (monthCnt + 1)));
                 monthState[monthCnt] = saveCurrentState * (1.0f + (monthProfit * (monthCnt + 1)));
 
-                saving = ((monthPrice[monthCnt] - monthState[monthCnt]));
-                saving /= ((monthCnt + 1) + (((monthCnt + 1) * (monthCnt + 2) / 2) * monthProfit));
+                savingValue = ((monthPrice[monthCnt] - monthState[monthCnt]));
+                savingValue /= ((monthCnt + 1) + (((monthCnt + 1) * (monthCnt + 2) / 2) * monthProfit));
             }
         }
 
