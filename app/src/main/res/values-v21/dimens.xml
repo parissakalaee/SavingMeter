@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="result_margin">78dp</dimen>
+    <dimen name="result_top_margin">6dp</dimen>
+    <dimen name="help_top_margin">10dp</dimen>
+    <dimen name="nav_top_margin">24dp</dimen>
+</resources>

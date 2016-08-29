@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size">22sp</dimen>
+    <dimen name="hint_font_size">18sp</dimen>
+    <dimen name="icon_font_size">26sp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
+    <!--<dimen name="help_top_margin">20dp</dimen>-->
+
+
+</resources>

@@ -1,0 +1,106 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="colorButtonNormal">@color/colorAccent</item>-->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CustomTextTabStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">@dimen/font_size</item>
+    </style>
+
+    <style name="CustomTextInput" parent="TextAppearance.AppCompat">
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">@dimen/font_size</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CustomCardView" parent="CardView">
+        <!--<item name="cardBackgroundColor">@color/cardview_light_background</item>-->
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">3dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">number</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:selectAllOnFocus">true</item>
+        <!--<item name="android:textColorHighlight">#66A67B00</item>-->
+    </style>
+
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:tag">icon</item>
+        <item name="android:textSize">@dimen/font_size</item>
+    </style>
+
+    <style name="CustomButton.RED" parent="CustomButton">
+        <item name="colorButtonNormal">@color/downSelected</item>
+        <item name="android:text">@string/ic_down</item>
+        <item name="android:textColor">@drawable/txt_downkey</item>
+    </style>
+
+    <style name="CustomButton.RED2" parent="CustomButton">
+        <item name="colorButtonNormal">@color/downSelectedDouble</item>
+        <item name="android:text">@string/ic_down_double</item>
+        <item name="android:textColor">@drawable/txt_downkey</item>
+    </style>
+
+    <style name="CustomButton.GREEN" parent="CustomButton">
+        <item name="colorButtonNormal">@color/upSelected</item>
+        <item name="android:text">@string/ic_up</item>
+        <item name="android:textColor">@drawable/txt_upkey</item>
+    </style>
+
+    <style name="CustomButton.GREEN2" parent="CustomButton">
+        <item name="colorButtonNormal">@color/upSelectedDouble</item>
+        <item name="android:text">@string/ic_up_double</item>
+        <item name="android:textColor">@drawable/txt_upkey</item>
+    </style>
+
+    <style name="CustomTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/hint_font_size</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColorPrimary">@color/textColorHint</item>
+    </style>
+
+    <style name="HelpDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>

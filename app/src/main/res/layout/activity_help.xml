@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:context=".ActivityHelp"></android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/skipButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingLeft="36dp"
+            android:paddingRight="36dp"
+            android:tag="icon"
+            android:text="@string/ic_exit"
+            android:textColor="@color/nav_exit"
+            android:textSize="@dimen/icon_font_size"
+            android:gravity="center" />
+
+        <ir.Parka.keychi.SelectionIndicator
+            android:id="@+id/indicator"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:activeDotColor="@color/nav_star"
+            app:activeItemIndex="0"
+            app:numberOfItems="7"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingLeft="36dp"
+            android:paddingRight="36dp"
+            android:tag="icon"
+            android:text="@string/ic_next"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/icon_font_size"
+            android:gravity="center_vertical|right" />
+
+        <TextView
+            android:id="@+id/doneButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingLeft="36dp"
+            android:paddingRight="36dp"
+            android:tag="icon"
+            android:text="@string/ic_done"
+            android:textColor="@color/nav_help"
+            android:textSize="@dimen/icon_font_size"
+            android:visibility="gone"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

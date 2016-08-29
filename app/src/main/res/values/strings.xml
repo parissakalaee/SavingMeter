@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">پس انداز سنج</string>
+
+    <string name="navigation_drawer_open">باز کردن منوی کشویی</string>
+    <string name="navigation_drawer_close">بستن منوی کشویی</string>
+
+    <string name="str_goal">میزان هدف مالی (تومان)</string>
+    <string name="str_current">میزان پس انداز فعلی (تومان)</string>
+    <string name="str_current_error">میزان پس انداز فعلی خود را وارد کنید</string>
+    <string name="str_profit">سود سپرده بانکی (درصد)</string>
+    <string name="str_inflation">نرخ تورم (درصد)</string>
+    <string name="str_year">سال</string>
+    <string name="str_month">ماه</string>
+    <string name="str_date">زمان مطلوب برای تحقق هدف</string>
+
+    <string name="err_empty_goal">میزان هدف مالی خود را وارد کنید</string>
+    <string name="err_inflation_less_than_profit">مقدار تورم باید بزرگتر از سود باشد</string>
+    <string name="err_zero_year_month">مقادیر بزرگتری انتخاب کنید</string>
+    <string name="err_empty_input">مقدار این ورودی باید بزرگتر از صفر باشد</string>
+    <string name="err_insufficient_goal">هدف باید حداقل 100،000 تومان باشد</string>
+    <string name="err_unnecessary_saving">نیازی به پس انداز نیست</string>
+    <string name="err_wrong_method">اختلاف هدف سرمایه گذاری و پس انداز فعلی اندک است، در این شرایط پس انداز بانکی توصیه نمی شود</string>
+
+    <string name="msg_exit">جهت خروج کلید بازگشت را مجدداً بفشارید</string>
+    <string name="msg_bazzar_not_installed">لطفاً ابتدا برنامه کافه بازار را بر روی  گوشی نصب کنید</string>
+
+    <string name="str_calculator">محاسبه</string>
+    <string name="str_bank">بانک ها</string>
+    <string name="str_help">راهنما</string>
+
+    <string name="ic_nav">&#xf0c9;</string>
+    <string name="ic_calculator">&#xf1ec;</string>
+    <string name="ic_bank">&#xf19c;</string>
+    <string name="ic_help">&#xf059;</string>
+    <string name="ic_about_us">&#xf05a;</string>
+    <string name="ic_contact">&#xf003;</string>
+    <string name="ic_star">&#xf005;</string>
+    <string name="ic_exit">&#xf00d;</string>
+    <string name="ic_up">&#xf106;</string>
+    <string name="ic_down">&#xf107;</string>
+    <string name="ic_down_double">&#xf103;</string>
+    <string name="ic_up_double">&#xf102;</string>
+    <string name="ic_reset">&#xf021;</string>
+    <string name="ic_link">&#xf0c1;</string>
+    <string name="ic_done">&#xf058;</string>
+    <string name="ic_next">&#xf061;</string>
+
+    <string-array name="drawer_titles">
+        <item>درباره گروه نرم افزاری پرکا</item>
+        <item>ارسال نظر و امتیاز</item>
+        <item>تماس با ما</item>
+        <item>راهنما</item>
+        <item>خروج</item>
+    </string-array>
+    <string-array name="drawer_icons">
+        <item>@string/ic_about_us</item>
+        <item>@string/ic_star</item>
+        <item>@string/ic_contact</item>
+        <item>@string/ic_help</item>
+        <item>@string/ic_exit</item>
+    </string-array>
+
+    <string-array name="drawer_colors">
+        <item>@color/nav_about</item>
+        <item>@color/nav_star</item>
+        <item>@color/nav_contact</item>
+        <item>@color/nav_help</item>
+        <item>@color/nav_exit</item>
+    </string-array>
+
+    <string name="txt_about">
+    <![CDATA[
+	<p>
+	<a href="http://parkagroup.ir">گروه نرم افزاری پرکا</a>
+در سال 1393 و با تمرکز بر توسعه برنامه‌های کاربردی موبایل در محیط اندروید تشکیل گردید و نخستین محصول خود را در فروردین 1394 و تحت عنوان پس انداز سنج منتشر نمود.
+	</p>
+	<p>
+درحال حاضر این گروه شامل چهار بخش مجزا است که معرفی ایده، تهیه نرم افزار، تست محصول و مدیریت را بر عهده دارند. این گروه قصد دارد در ادامه فعالیت خود، در زمینه رابط‌های سخت افزاری و میان‌افزارها نیز خدمات کاربردی ارائه کند.
+	</p>
+	<p>
+      در صو رت تمایل به مشارکت در پروژه‌های این گروه و یا درخواست تدوین برنامه‌های کاربردی موبایل توسط پرکا، خواهشمند است با ما تماس بگیرید.
+	</p>
+
+    ]]>
+    </string>
+</resources>
