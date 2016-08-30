@@ -211,8 +211,6 @@ public class ActivityMain extends EnhancedAppCompatActivity {
     private class DrawerItemAdapter extends RecyclerView.Adapter<DrawerItemHolder> {
 
         private List<DrawerItem> items;
-
-
         public DrawerItemAdapter(List<DrawerItem> items){
             super();
             this.items = items;
@@ -244,7 +242,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
 
                     switch(position){
                         case 0:
-//                            holder.itemTitle.setSelected(true);
+                            holder.itemTitle.setSelected(true);
                             aboutDialog();
                             break;
                         case 1:
