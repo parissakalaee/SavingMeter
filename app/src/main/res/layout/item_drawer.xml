@@ -16,11 +16,17 @@
 
     <TextView
         android:id="@+id/drawer_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/drawer_icon"
         android:gravity="center_vertical"
         android:textSize="@dimen/hint_font_size"
-        android:paddingRight="48dp"/>
+        android:paddingRight="48dp"
+
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
 </RelativeLayout>
