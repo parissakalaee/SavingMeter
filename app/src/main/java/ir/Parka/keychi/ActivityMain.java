@@ -242,7 +242,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
 
                     switch(position){
                         case 0:
-                            holder.itemTitle.setSelected(true);
+//                            holder.itemTitle.setSelected(true);
                             aboutDialog();
                             break;
                         case 1:
