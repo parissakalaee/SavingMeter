@@ -19,6 +19,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -243,6 +244,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
 
                     switch(position){
                         case 0:
+//                            holder.itemTitle.setSelected(true);
                             aboutDialog();
                             break;
                         case 1:
@@ -350,7 +352,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
     }
 
     private void sendEmailFeedback(String paramStringPackage){
-//        throw new RuntimeException("This is a crash");
+        //        throw new RuntimeException("This is a crash");
         Intent Email = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:info@parkagroup.ir"));
         try{
             String str = getPackageManager().getPackageInfo(G.currentActivity.getPackageName(), 0).versionName;
