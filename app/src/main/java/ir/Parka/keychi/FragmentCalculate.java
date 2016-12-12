@@ -18,6 +18,10 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 public class FragmentCalculate extends Fragment {
 
     public FragmentCalculate() {
@@ -35,6 +39,7 @@ public class FragmentCalculate extends Fragment {
     public float savingValue = 0.0f;
     TextView txtOutput;
     private boolean isErrorSet = false;
+    NumberFormat usFormat;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -114,8 +119,17 @@ public class FragmentCalculate extends Fragment {
 
         resetFields();
 
-        goalValue = Long.parseLong(edtGoal.getText().toString().replaceAll(",", ""));
-        currentValue = Long.parseLong(edtCurrent.getText().toString().replaceAll(",", ""));
+        usFormat = NumberFormat.getNumberInstance(Locale.US);
+        try{
+            goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        try{
+            currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
         profitValue = edtProfit.getCurrentValue();
         inflationValue = edtInflation.getCurrentValue();
         yearValue = edtDate.getYearValue();
@@ -152,7 +166,7 @@ public class FragmentCalculate extends Fragment {
 
         if (isCorrectYear) {
             txtOutput.setVisibility(View.VISIBLE);
-            txtOutput.setText(String.format("%,d", (int) savingValue));
+            txtOutput.setText(String.format(new Locale("en-US"),"%,d", (int) savingValue));
             edtDate.displayErrorYear(null, false);
         } else {
             txtOutput.setVisibility(View.INVISIBLE);
@@ -166,11 +180,21 @@ public class FragmentCalculate extends Fragment {
 
             @Override
             public void run() {
-                if (edtGoal.getText().toString().length() > 0)
-                    goalValue = Long.parseLong(edtGoal.getText().toString().replaceAll(",", ""));
+                if (edtGoal.getText().toString().length() > 0){
+                    try{
+                        goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
+                    }catch(ParseException e){
+                        e.printStackTrace();
+                    }
+                }
 
-                if (edtCurrent.getText().toString().length() > 0)
-                    currentValue = Long.parseLong(edtCurrent.getText().toString().replaceAll(",", ""));
+                if (edtCurrent.getText().toString().length() > 0){
+                    try{
+                        currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
+                    }catch(ParseException e){
+                        e.printStackTrace();
+                    }
+                }
 
                 if (edtGoal.getText().toString().trim().isEmpty()) {
                     txtOutput.setVisibility(View.INVISIBLE);
@@ -207,11 +231,21 @@ public class FragmentCalculate extends Fragment {
 
             @Override
             public void run() {
-                if (edtGoal.getText().toString().length() > 0)
-                    goalValue = Long.parseLong(edtGoal.getText().toString().replaceAll(",", ""));
+                if (edtGoal.getText().toString().length() > 0){
+                    try{
+                        goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
+                    }catch(ParseException e){
+                        e.printStackTrace();
+                    }
+                }
 
-                if (edtCurrent.getText().toString().length() > 0)
-                    currentValue = Long.parseLong(edtCurrent.getText().toString().replaceAll(",", ""));
+                if (edtCurrent.getText().toString().length() > 0){
+                    try{
+                        currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
+                    }catch(ParseException e){
+                        e.printStackTrace();
+                    }
+                }
 
                 if (edtCurrent.getText().toString().trim().isEmpty()) {
                     txtOutput.setVisibility(View.INVISIBLE);
