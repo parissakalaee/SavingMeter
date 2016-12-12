@@ -253,6 +253,7 @@ public class ActivityMain extends AppCompatActivity {
 //                            openCandoFeedBack(getApplicationContext().getPackageName());
 //                            openMyketFeedBack(getApplicationContext().getPackageName());
 //                            openIranAppsFeedBack(getApplicationContext().getPackageName());
+//                            openAvvalMarketFeedBack();
                             break;
                         case 2:
                             sendEmailFeedback(getApplicationContext().getPackageName());
@@ -356,6 +357,10 @@ public class ActivityMain extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void openAvvalMarketFeedBack(){
+        showToastMessage("به زودی");
     }
 
     private void sendEmailFeedback(String paramStringPackage){
