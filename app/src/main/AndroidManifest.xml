@@ -4,12 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:fullBackupContent="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="ir.Parka.keychi.ActivityMain"
+            android:name="ir.Parka.keychi.act.ActivityMain"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -20,8 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ir.Parka.keychi.ActivityHelp"
-            android:theme="@style/HelpDialogStyle"></activity>
+            android:name="ir.Parka.keychi.act.ActivityHelp"
+            android:theme="@style/HelpDialogStyle"/>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="2b31629640ca878a85e4e24b06e63ebd9986eca3" />

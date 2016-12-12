@@ -7,10 +7,8 @@ import android.os.Handler;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
-public class G extends Application{
+public class ThisApplication extends Application{
 
-	public static Context context;
-	public static Activity currentActivity;
 	public static final Handler HANDLER = new Handler();
 	
 	@Override
@@ -18,6 +16,5 @@ public class G extends Application{
 		super.onCreate();
 
         Fabric.with(this, new Crashlytics());
-		context = getApplicationContext();
 	}
 }

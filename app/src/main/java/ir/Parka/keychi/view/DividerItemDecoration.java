@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -30,7 +30,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             android.R.attr.listDivider
     };
 
-    public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
+    private static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
 
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
 
@@ -61,7 +61,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    public void drawVertical(Canvas c, RecyclerView parent) {
+    private void drawVertical(Canvas c, RecyclerView parent) {
         final int left = parent.getPaddingLeft();
         final int right = parent.getWidth() - parent.getPaddingRight();
 
@@ -77,7 +77,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    public void drawHorizontal(Canvas c, RecyclerView parent) {
+    private void drawHorizontal(Canvas c, RecyclerView parent) {
         final int top = parent.getPaddingTop();
         final int bottom = parent.getHeight() - parent.getPaddingBottom();
 

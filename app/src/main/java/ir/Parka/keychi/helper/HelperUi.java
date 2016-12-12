@@ -1,8 +1,10 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.helper;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import ir.Parka.keychi.act.ActivityMain;
 
 
 public class HelperUi {

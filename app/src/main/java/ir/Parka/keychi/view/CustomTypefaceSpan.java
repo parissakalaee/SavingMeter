@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;

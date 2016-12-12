@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.fragment;
 
 
 import android.content.Context;
@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ir.Parka.keychi.helper.HelperUi;
 
 
 public class FragmentBank extends Fragment {
@@ -56,7 +58,7 @@ public class FragmentBank extends Fragment {
         private String content;
         private String imageResource;
 
-        public ItemObject(String content, String imageResource) {
+        ItemObject(String content, String imageResource) {
             this.content = content;
             this.imageResource = imageResource;
         }
@@ -69,7 +71,7 @@ public class FragmentBank extends Fragment {
             this.content = content;
         }
 
-        public String getImageResource() {
+        String getImageResource() {
             return imageResource;
         }
 
@@ -84,7 +86,7 @@ public class FragmentBank extends Fragment {
         private List<ItemObject> listStorage;
         private Context context;
 
-        public CustomAdapter(Context context, List<ItemObject> customizedListView) {
+        CustomAdapter(Context context, List<ItemObject> customizedListView) {
             this.context = context;
             layoutinflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             listStorage = customizedListView;
@@ -126,7 +128,7 @@ public class FragmentBank extends Fragment {
             return convertView;
         }
 
-        public class ViewHolder {
+        class ViewHolder {
             TextView textInListView;
             ImageView imageInListView;
         }

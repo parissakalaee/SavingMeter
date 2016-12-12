@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,7 +12,7 @@ public class NumberTextWatcher implements TextWatcher {
 	private DecimalFormat df;
 	private DecimalFormat dfnd;
 	private boolean hasFractionalPart;
-	int trailingZeroCount;
+	private int trailingZeroCount;
 
 	private EditText et;
 
@@ -46,7 +46,7 @@ public class NumberTextWatcher implements TextWatcher {
 				StringBuilder trailingZeros = new StringBuilder();
 				while (trailingZeroCount-- > 0)
 					trailingZeros.append('0');
-				et.setText(df.format(n) + trailingZeros.toString());
+				et.setText(String.format("%s%s", df.format(n), trailingZeros.toString()));
 			} else {
 				et.setText(dfnd.format(n));
 			}				
@@ -59,9 +59,7 @@ public class NumberTextWatcher implements TextWatcher {
 				// place cursor at the end?
 				et.setSelection(et.getText().length() - 1);
 			}
-		} catch (NumberFormatException nfe) {
-			// do nothing?
-		} catch (ParseException e) {
+		} catch (NumberFormatException | ParseException nfe) {
 			// do nothing?
 		}
 

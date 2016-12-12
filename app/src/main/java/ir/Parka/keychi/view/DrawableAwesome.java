@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 
@@ -29,9 +30,9 @@ public class DrawableAwesome extends Drawable {
     private final float shadowDy;
     private final int shadowColor;
 
-    public DrawableAwesome(int icon, int sizeDpi, int color,
-                           boolean antiAliased, boolean fakeBold, float shadowRadius,
-                           float shadowDx, float shadowDy, int shadowColor, Context context) {
+    private DrawableAwesome(int icon, int sizeDpi, int color,
+                            boolean antiAliased, boolean fakeBold, float shadowRadius,
+                            float shadowDx, float shadowDy, int shadowColor, Context context) {
         super();
         this.context = context;
         this.icon = icon;
@@ -70,7 +71,7 @@ public class DrawableAwesome extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         float xDiff = (width/2.0f);
         String stringIcon = this.context.getResources().getString(icon);
         canvas.drawText(stringIcon, xDiff, size, paint);
@@ -93,8 +94,7 @@ public class DrawableAwesome extends Drawable {
 
     private int dpToPx(int dp) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-        return px;
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
     public static class DrawableAwesomeBuilder {

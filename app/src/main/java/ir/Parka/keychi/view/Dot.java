@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,6 +15,9 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import ir.Parka.keychi.helper.HelperColor;
+
 /**
  * A solid circular shape with two states: active and inactive. Each state can be configured with a
  * different diameter and color, and the {@code Dot} can be made to transition between these

@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.act;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,12 +14,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,11 +32,15 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
+import ir.Parka.keychi.view.DividerItemDecoration;
+import ir.Parka.keychi.fragment.FragmentBank;
+import ir.Parka.keychi.fragment.FragmentCalculate;
+import ir.Parka.keychi.helper.HelperUi;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityMain extends EnhancedAppCompatActivity {
+public class ActivityMain extends AppCompatActivity {
 
     public static Typeface typeFaceDefault;
     public static Typeface typeFaceFont;
@@ -48,11 +52,11 @@ public class ActivityMain extends EnhancedAppCompatActivity {
     public void onBackPressed(){
         if(back_pressed + 2000 > System.currentTimeMillis()){
             super.onBackPressed();
-            G.currentActivity.finish();
+            finish();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
             System.exit(0);
         }else{
             showToastMessage(getString(ir.Parka.keychi.R.string.msg_exit));
@@ -61,7 +65,6 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         back_pressed = System.currentTimeMillis();
     }
 
-    private TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
@@ -104,7 +107,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         String[] itemsIcon = getResources().getStringArray(ir.Parka.keychi.R.array.drawer_icons);
         int[] itemsColor = getResources().getIntArray(ir.Parka.keychi.R.array.drawer_colors);
 
-        List<DrawerItem> drawerItems = new ArrayList<DrawerItem>();
+        List<DrawerItem> drawerItems = new ArrayList<>();
         for(int i = 0; i < itemsTitle.length; i++){
             drawerItems.add(new DrawerItem(itemsTitle[i], itemsIcon[i], itemsColor[i]));
         }
@@ -116,7 +119,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         setupViewPager(viewPager);
         viewPager.setCurrentItem(1);
 
-        tabLayout = (TabLayout) findViewById(ir.Parka.keychi.R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(ir.Parka.keychi.R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -143,7 +146,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager){
+        ViewPagerAdapter(FragmentManager manager){
             super(manager);
         }
 
@@ -157,7 +160,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title){
+        void addFragment(Fragment fragment, String title){
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
@@ -175,7 +178,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         String itemIcon;
         int itemColor;
 
-        public DrawerItem(String itemTitle, String imgIcon, int itemColor){
+        DrawerItem(String itemTitle, String imgIcon, int itemColor){
             this.itemTitle = itemTitle;
             this.itemIcon = imgIcon;
             this.itemColor = itemColor;
@@ -196,11 +199,11 @@ public class ActivityMain extends EnhancedAppCompatActivity {
 
     private class DrawerItemHolder extends RecyclerView.ViewHolder {
 
-        public TextView itemIcon;
-        public TextView itemTitle;
-        public ViewGroup itemLayout;
+        TextView itemIcon;
+        TextView itemTitle;
+        ViewGroup itemLayout;
 
-        public DrawerItemHolder(View itemView){
+        DrawerItemHolder(View itemView){
             super(itemView);
             itemIcon = (TextView) itemView.findViewById(ir.Parka.keychi.R.id.drawer_icon);
             itemTitle = (TextView) itemView.findViewById(ir.Parka.keychi.R.id.drawer_text);
@@ -211,7 +214,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
     private class DrawerItemAdapter extends RecyclerView.Adapter<DrawerItemHolder> {
 
         private List<DrawerItem> items;
-        public DrawerItemAdapter(List<DrawerItem> items){
+        DrawerItemAdapter(List<DrawerItem> items){
             super();
             this.items = items;
         }
@@ -246,13 +249,13 @@ public class ActivityMain extends EnhancedAppCompatActivity {
                             aboutDialog();
                             break;
                         case 1:
-                            openCafeBazaarFeedBack(G.currentActivity.getPackageName(), "rating");
-                            //                            openCandoFeedBack(G.currentActivity.getPackageName());
-                            //                            openMyketFeedBack(G.currentActivity.getPackageName());
-                            //                            openIranAppsFeedBack(G.currentActivity.getPackageName());
+                            openCafeBazaarFeedBack(getApplicationContext().getPackageName(), "rating");
+//                            openCandoFeedBack(getApplicationContext().getPackageName());
+//                            openMyketFeedBack(getApplicationContext().getPackageName());
+//                            openIranAppsFeedBack(getApplicationContext().getPackageName());
                             break;
                         case 2:
-                            sendEmailFeedback(G.currentActivity.getPackageName());
+                            sendEmailFeedback(getApplicationContext().getPackageName());
                             break;
                         case 3:
                             Intent myIntent = new Intent(ActivityMain.this, ActivityHelp.class);
@@ -283,22 +286,28 @@ public class ActivityMain extends EnhancedAppCompatActivity {
     private void openCafeBazaarFeedBack(final String paramStringPackage, final String paramStringAction){
         if(isPackageInstalled("com.farsitel.bazaar")){
             Intent intent;
-            if(paramStringAction.equals("rating"))
-                intent = new Intent(Intent.ACTION_EDIT); // submit rate for app
-            else if(paramStringAction.equals("detail"))
-                intent = new Intent(Intent.ACTION_VIEW); // view detail of app
-            else if(paramStringAction.equals("setup"))
-                intent = new Intent(Intent.ACTION_INSERT); // setup app directly
-            else
-                intent = new Intent(Intent.ACTION_VIEW); // view detail of app
+            switch(paramStringAction){
+                case "rating":
+                    intent = new Intent(Intent.ACTION_EDIT); // submit rate for app
+                    break;
+                case "detail":
+                    intent = new Intent(Intent.ACTION_VIEW); // view detail of app
+                    break;
+                case "setup":
+                    intent = new Intent(Intent.ACTION_INSERT); // setup app directly
+                    break;
+                default:
+                    intent = new Intent(Intent.ACTION_VIEW); // view detail of app
+                    break;
+            }
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try{
                 intent.setData(Uri.parse("bazaar://details?id=" + paramStringPackage));
-                G.currentActivity.startActivity(intent);
+                ActivityMain.this.startActivity(intent);
             }catch(android.content.ActivityNotFoundException anfe){
                 intent.setData(Uri.parse("http://cafebazaar.ir/app/?id=" + paramStringPackage));
-                G.currentActivity.startActivity(intent);
+                ActivityMain.this.startActivity(intent);
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -312,10 +321,10 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
             intent.setData(Uri.parse("cando://leave-review?id=" + paramStringPackage));
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
         }catch(android.content.ActivityNotFoundException anfe){
             intent.setData(Uri.parse("http://cando.asr24.com/app.jsp?package=" + paramStringPackage));
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -326,10 +335,10 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
             intent.setData(Uri.parse("myket://comment/#Intent;scheme=comment;package=" + paramStringPackage + ";end"));
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
         }catch(android.content.ActivityNotFoundException anfe){
             intent.setData(Uri.parse("http://myket.ir/app/" + paramStringPackage));
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -340,10 +349,10 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try{
             intent.setData(Uri.parse("iranapps://app/" + paramStringPackage + "?a=comment&r=5"));
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
         }catch(android.content.ActivityNotFoundException anfe){
             intent.setData(Uri.parse("http://iranapps.ir/app/" + paramStringPackage + "?a=comment&r=5"));
-            G.currentActivity.startActivity(intent);
+            ActivityMain.this.startActivity(intent);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -353,12 +362,10 @@ public class ActivityMain extends EnhancedAppCompatActivity {
         //        throw new RuntimeException("This is a crash");
         Intent Email = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:info@parkagroup.ir"));
         try{
-            String str = getPackageManager().getPackageInfo(G.currentActivity.getPackageName(), 0).versionName;
+            String str = getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
             Email.putExtra(Intent.EXTRA_EMAIL, "info@parkagroup.ir");
             Email.putExtra(Intent.EXTRA_SUBJECT, paramStringPackage + str + " بازخورد");
             startActivity(Intent.createChooser(Email, "تماس با ما"));
-        }catch(PackageManager.NameNotFoundException localNameNotFoundException){
-            localNameNotFoundException.printStackTrace();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -384,7 +391,7 @@ public class ActivityMain extends EnhancedAppCompatActivity {
                 .setCancelable(true)
                 .setPositiveButton(getString(ir.Parka.keychi.R.string.ic_contact), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id){
-                        sendEmailFeedback(G.currentActivity.getPackageName());
+                        sendEmailFeedback(getApplicationContext().getPackageName());
                         dialog.cancel();
                     }
                 })

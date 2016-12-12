@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +21,15 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
+
+import ir.Parka.keychi.ThisApplication;
+import ir.Parka.keychi.act.ActivityMain;
+import ir.Parka.keychi.helper.HelperUi;
+import ir.Parka.keychi.view.CustomEditText;
+import ir.Parka.keychi.view.CustomMonthYear;
+import ir.Parka.keychi.view.CustomTypefaceSpan;
+import ir.Parka.keychi.view.DrawableAwesome;
+import ir.Parka.keychi.view.NumberTextWatcher;
 
 public class FragmentCalculate extends Fragment {
 
@@ -176,7 +185,7 @@ public class FragmentCalculate extends Fragment {
     }
 
     private void validateGoal() {
-        G.HANDLER.post(new Runnable() {
+        ThisApplication.HANDLER.post(new Runnable() {
 
             @Override
             public void run() {
@@ -227,7 +236,7 @@ public class FragmentCalculate extends Fragment {
     }
 
     private void validateCurrent() {
-        G.HANDLER.post(new Runnable() {
+        ThisApplication.HANDLER.post(new Runnable() {
 
             @Override
             public void run() {
@@ -277,7 +286,7 @@ public class FragmentCalculate extends Fragment {
     }
 
     private void validateProfit() {
-        G.HANDLER.post(new Runnable() {
+        ThisApplication.HANDLER.post(new Runnable() {
 
             @Override
             public void run() {
@@ -296,7 +305,7 @@ public class FragmentCalculate extends Fragment {
     }
 
     private void validateInflation() {
-        G.HANDLER.post(new Runnable() {
+        ThisApplication.HANDLER.post(new Runnable() {
 
             @Override
             public void run() {
@@ -315,7 +324,7 @@ public class FragmentCalculate extends Fragment {
     }
 
     private void validateDate() {
-        G.HANDLER.post(new Runnable() {
+        ThisApplication.HANDLER.post(new Runnable() {
 
             @Override
             public void run() {
@@ -358,7 +367,7 @@ public class FragmentCalculate extends Fragment {
     }
 
     public void displayError(TextInputLayout inputLayout, String errorInput, boolean errorFlag) {
-        if (errorFlag == true) {
+        if (errorFlag) {
             SpannableStringBuilder ssbuilder = new SpannableStringBuilder(errorInput);
             ssbuilder.setSpan(new CustomTypefaceSpan("", ActivityMain.typeFaceDefault), 0, ssbuilder.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 

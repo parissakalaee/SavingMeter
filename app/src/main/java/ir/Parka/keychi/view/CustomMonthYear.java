@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
@@ -14,12 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.util.Locale;
+
+import ir.Parka.keychi.act.ActivityMain;
+
 
 public class CustomMonthYear extends LinearLayout{
 
     private EditText edtYear;
     private EditText edtMonth;
-    private Button btnUpYear, btnDownYear, btnUpMonth, btnDownMonth;
     private TextInputLayout lytYear;
     private TextInputLayout lytMonth;
 
@@ -46,10 +49,10 @@ public class CustomMonthYear extends LinearLayout{
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(ir.Parka.keychi.R.layout.custom_yearmonth, this, true);
 
-        btnUpYear = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_up_year);
-        btnDownYear = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_down_year);
-        btnUpMonth = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_up_month);
-        btnDownMonth = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_down_month);
+        Button btnUpYear = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_up_year);
+        Button btnDownYear = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_down_year);
+        Button btnUpMonth = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_up_month);
+        Button btnDownMonth = (Button) view.findViewById(ir.Parka.keychi.R.id.btn_down_month);
 
         edtYear = (EditText) view.findViewById(ir.Parka.keychi.R.id.edt_year);
         lytYear = (TextInputLayout) view.findViewById(ir.Parka.keychi.R.id.lyt_year);
@@ -118,7 +121,7 @@ public class CustomMonthYear extends LinearLayout{
         if (currentYear < minYear) {
             currentYear = minYear;
         }
-        edtYear.setText("" + String.format("%d", currentYear));
+        edtYear.setText(String.format(new Locale("en-US"),"%d", currentYear));
     }
 
     public void setMonthValue(int value) {
@@ -130,12 +133,12 @@ public class CustomMonthYear extends LinearLayout{
         if (currentMonth < minMonth) {
             currentMonth = minMonth;
         }
-        edtMonth.setText("" + String.format("%d", currentMonth));
+        edtMonth.setText(String.format(new Locale("en-US"),"%d", currentMonth));
     }
 
     public void displayErrorYear(String errorInput, boolean errorFlag) {
 
-        if(errorFlag == true){
+        if(errorFlag){
 
             SpannableStringBuilder ssbuilder = new SpannableStringBuilder(errorInput);
             ssbuilder.setSpan(new CustomTypefaceSpan("", ActivityMain.typeFaceDefault), 0, ssbuilder.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -155,7 +158,7 @@ public class CustomMonthYear extends LinearLayout{
 
     public void displayErrorMonth(String errorInput, boolean errorFlag) {
 
-        if(errorFlag == true){
+        if(errorFlag){
 
             SpannableStringBuilder ssbuilder = new SpannableStringBuilder(errorInput);
             ssbuilder.setSpan(new CustomTypefaceSpan("", ActivityMain.typeFaceDefault), 0, ssbuilder.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -186,36 +189,36 @@ public class CustomMonthYear extends LinearLayout{
                     tempValue = getMonthValue() - 1;
                     if (tempValue >= minMonth) {
                         currentMonth = tempValue;
-                        edtMonth.setText("" + String.format("%d", currentMonth));
+                        edtMonth.setText(String.format(new Locale("en-US"),"%d", currentMonth));
                     } else {
-                        edtMonth.setText("" + maxMonth);
+                        edtMonth.setText(String.format(new Locale("en-US"),"%d", maxMonth));
                     }
                     break;
                 case ir.Parka.keychi.R.id.btn_down_year:
                     tempValue = getYearValue() - 1;
                     if (tempValue >= minYear) {
                         currentYear = tempValue;
-                        edtYear.setText("" + String.format("%d", currentYear));
+                        edtYear.setText(String.format(new Locale("en-US"),"%d", currentYear));
                     } else {
-                        edtYear.setText("" + minYear);
+                        edtYear.setText(String.format(new Locale("en-US"),"%d", minYear));
                     }
                     break;
                 case ir.Parka.keychi.R.id.btn_up_month:
                     tempValue = getMonthValue() + 1;
                     if (tempValue <= maxMonth) {
                         currentMonth = tempValue;
-                        edtMonth.setText("" + String.format("%d", currentMonth));
+                        edtMonth.setText(String.format(new Locale("en-US"),"%d", currentMonth));
                     }else{
-                        edtMonth.setText("" + minMonth);
+                        edtMonth.setText(String.format(new Locale("en-US"),"%d", minMonth));
                     }
                     break;
                 case ir.Parka.keychi.R.id.btn_up_year:
                     tempValue = getYearValue() + 1;
                     if (tempValue <= maxYear) {
                         currentYear = tempValue;
-                        edtYear.setText("" + String.format("%d", currentYear));
+                        edtYear.setText(String.format(new Locale("en-US"),"%d", currentYear));
                     } else {
-                        edtYear.setText("" + maxYear);
+                        edtYear.setText(String.format(new Locale("en-US"),"%d", maxYear));
                     }
                     break;
             }
@@ -240,12 +243,12 @@ public class CustomMonthYear extends LinearLayout{
                 try {
                     value = Integer.parseInt(contentString);
                     if (value > maxMonth) {
-                        edtMonth.setText("" + maxMonth);
+                        edtMonth.setText(String.format(new Locale("en-US"),"%d", maxMonth));
                     }
 
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    edtMonth.setText("" + minMonth);
+                    edtMonth.setText(String.format(new Locale("en-US"),"%d", minMonth));
                 }
             } else if (editable == edtYear.getEditableText()) {
                 String contentString = edtYear.getText().toString();
@@ -254,12 +257,12 @@ public class CustomMonthYear extends LinearLayout{
                 try {
                     value = Integer.parseInt(contentString);
                     if (value > maxYear) {
-                        edtYear.setText("" + maxYear);
+                        edtYear.setText(String.format(new Locale("en-US"),"%d", maxYear));
                     }
 
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    edtYear.setText("" + minYear);
+                    edtYear.setText(String.format(new Locale("en-US"),"%d", minYear));
                 }
             }
         }

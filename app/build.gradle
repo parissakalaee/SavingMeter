@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "ir.Parka.keychi"
-        minSdkVersion 10
+        minSdkVersion 11
         targetSdkVersion 25
         versionCode 6
         versionName "2.2"

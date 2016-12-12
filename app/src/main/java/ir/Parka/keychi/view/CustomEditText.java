@@ -1,4 +1,4 @@
-package ir.Parka.keychi;
+package ir.Parka.keychi.view;
 
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.Locale;
+
+import ir.Parka.keychi.act.ActivityMain;
 
 
 public class CustomEditText extends LinearLayout{
@@ -75,11 +77,11 @@ public class CustomEditText extends LinearLayout{
                 try {
                     value = Float.parseFloat(contentString);
                     if (value > maxValue) {
-                        edtValue.setText("" + maxValue);
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", maxValue));
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
-                    edtValue.setText("" + minValue);
+                    edtValue.setText(String.format(new Locale("en-US"),"%.1f", minValue));
                 }
 
                 if (getCurrentValue() == 0.0f) {
@@ -156,36 +158,36 @@ public class CustomEditText extends LinearLayout{
                     tempValue = getCurrentValue() - 0.1f;
                     if (tempValue >= minValue) {
                         currentValue = tempValue;
-                        edtValue.setText("" + String.format("%.1f", currentValue));
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", currentValue));
                     } else {
-                        edtValue.setText("" + minValue);
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", minValue));
                     }
                     break;
                 case ir.Parka.keychi.R.id.btn_down_double:
                     tempValue = getCurrentValue() - 1;
                     if (tempValue >= minValue) {
                         currentValue = tempValue;
-                        edtValue.setText("" + String.format("%.1f", currentValue));
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", currentValue));
                     } else {
-                        edtValue.setText("" + minValue);
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", minValue));
                     }
                     break;
                 case ir.Parka.keychi.R.id.btn_up:
                     tempValue = getCurrentValue() + 0.1f;
                     if (tempValue <= maxValue) {
                         currentValue = tempValue;
-                        edtValue.setText("" + String.format("%.1f", currentValue));
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", currentValue));
                     }else{
-                        edtValue.setText("" + maxValue);
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", maxValue));
                     }
                     break;
                 case ir.Parka.keychi.R.id.btn_up_double:
                     tempValue = getCurrentValue() + 1;
                     if (tempValue <= maxValue) {
                         currentValue = tempValue;
-                        edtValue.setText("" + String.format("%.1f", currentValue));
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", currentValue));
                     } else {
-                        edtValue.setText("" + maxValue);
+                        edtValue.setText(String.format(new Locale("en-US"),"%.1f", maxValue));
                     }
                     break;
             }

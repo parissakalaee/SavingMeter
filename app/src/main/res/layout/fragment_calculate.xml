@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentCalculate">
+    tools:context=".fragment.FragmentCalculate">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_result"
@@ -39,7 +39,7 @@
                     android:paddingRight="3dp"
                     android:gravity="right"
                     android:textSize="@dimen/hint_font_size"
-                    android:text="مبلغ پیشنهادی پس انداز ماهانه (تومان)"
+                    android:text="@string/str_monthly_deposit"
                     android:textColor="@color/cardview_dark_background" />
 
                 <TextView
@@ -109,7 +109,7 @@
                 android:id="@+id/cv_profit"
                 style="@style/CustomCardView">
 
-                <ir.Parka.keychi.CustomEditText
+                <ir.Parka.keychi.view.CustomEditText
                     android:id="@+id/edt_profit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -120,7 +120,7 @@
                 android:id="@+id/cv_inflation"
                 style="@style/CustomCardView">
 
-                <ir.Parka.keychi.CustomEditText
+                <ir.Parka.keychi.view.CustomEditText
                     android:id="@+id/edt_inflation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -130,7 +130,7 @@
                 android:id="@+id/cv_yearmonth"
                 style="@style/CustomCardView">
 
-                <ir.Parka.keychi.CustomMonthYear
+                <ir.Parka.keychi.view.CustomMonthYear
                     android:id="@+id/edt_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
