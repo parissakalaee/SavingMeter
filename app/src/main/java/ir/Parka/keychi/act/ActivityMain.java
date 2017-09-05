@@ -84,14 +84,11 @@ public class ActivityMain extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView ic_menu = (TextView) findViewById(ir.Parka.keychi.R.id.ic_menu);
-        ic_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                if(drawerLayout.isDrawerOpen(Gravity.RIGHT)){
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
-                }else{
-                    drawerLayout.openDrawer(Gravity.RIGHT);
-                }
+        ic_menu.setOnClickListener(view -> {
+            if(drawerLayout.isDrawerOpen(Gravity.RIGHT)){
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+            }else{
+                drawerLayout.openDrawer(Gravity.RIGHT);
             }
         });
 

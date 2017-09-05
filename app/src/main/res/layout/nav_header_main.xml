@@ -19,8 +19,7 @@
         android:paddingRight="8dp"
         android:layout_gravity="right|center_vertical"
         android:src="@mipmap/ic_launcher"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentRight="true"/>
 
     <TextView
         android:layout_width="match_parent"

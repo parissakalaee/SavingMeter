@@ -85,14 +85,11 @@ public class FragmentCalculate extends Fragment {
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(ir.Parka.keychi.R.id.fab);
         fab.setImageDrawable(drawable);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fab.setOnClickListener(view1 -> {
 
-                resetFields();
+            resetFields();
 //                Snackbar.make(view, "نتیجه نهایی", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-            }
         });
 
         txtOutput = (TextView) view.findViewById(ir.Parka.keychi.R.id.txt_output);
@@ -175,7 +172,7 @@ public class FragmentCalculate extends Fragment {
 
         if (isCorrectYear) {
             txtOutput.setVisibility(View.VISIBLE);
-            txtOutput.setText(String.format(new Locale("en-US"),"%,d", (int) savingValue));
+            txtOutput.setText(NumberFormat.getNumberInstance(Locale.US).format((int)savingValue));
             edtDate.displayErrorYear(null, false);
         } else {
             txtOutput.setVisibility(View.INVISIBLE);
@@ -185,159 +182,139 @@ public class FragmentCalculate extends Fragment {
     }
 
     private void validateGoal() {
-        ThisApplication.HANDLER.post(new Runnable() {
-
-            @Override
-            public void run() {
-                if (edtGoal.getText().toString().length() > 0){
-                    try{
-                        goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
-                    }catch(ParseException e){
-                        e.printStackTrace();
-                    }
+        ThisApplication.HANDLER.post(() -> {
+            if (edtGoal.getText().toString().length() > 0){
+                try{
+                    goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
+                }catch(ParseException e){
+                    e.printStackTrace();
                 }
+            }
 
-                if (edtCurrent.getText().toString().length() > 0){
-                    try{
-                        currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
-                    }catch(ParseException e){
-                        e.printStackTrace();
-                    }
+            if (edtCurrent.getText().toString().length() > 0){
+                try{
+                    currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
+                }catch(ParseException e){
+                    e.printStackTrace();
                 }
+            }
 
-                if (edtGoal.getText().toString().trim().isEmpty()) {
+            if (edtGoal.getText().toString().trim().isEmpty()) {
+                txtOutput.setVisibility(View.INVISIBLE);
+                displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_empty_goal), true);
+            } else if (goalValue < 100000) {
+                txtOutput.setVisibility(View.INVISIBLE);
+                displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_insufficient_goal), true);
+            } else  {
+                if (goalValue <= currentValue) {
                     txtOutput.setVisibility(View.INVISIBLE);
-                    displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_empty_goal), true);
-                } else if (goalValue < 100000) {
+                    displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
+                    displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
+                    isErrorSet = true;
+                } else if ((inflationValue - profitValue) * goalValue / 100 > (goalValue - currentValue)) {
                     txtOutput.setVisibility(View.INVISIBLE);
-                    displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_insufficient_goal), true);
-                } else  {
-                    if (goalValue <= currentValue) {
-                        txtOutput.setVisibility(View.INVISIBLE);
-                        displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
-                        displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
-                        isErrorSet = true;
-                    } else if ((inflationValue - profitValue) * goalValue / 100 > (goalValue - currentValue)) {
-                        txtOutput.setVisibility(View.INVISIBLE);
-                        displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
-                        displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
-                        isErrorSet = true;
-                    } else {
-                        displayError(lytGoal, null, false);
-                        if (isErrorSet) {
-                            displayError(lytCurrent, null, false);
-                            isErrorSet = false;
-                        }
-                        submitForm();
+                    displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
+                    displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
+                    isErrorSet = true;
+                } else {
+                    displayError(lytGoal, null, false);
+                    if (isErrorSet) {
+                        displayError(lytCurrent, null, false);
+                        isErrorSet = false;
                     }
+                    submitForm();
                 }
             }
         });
     }
 
     private void validateCurrent() {
-        ThisApplication.HANDLER.post(new Runnable() {
-
-            @Override
-            public void run() {
-                if (edtGoal.getText().toString().length() > 0){
-                    try{
-                        goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
-                    }catch(ParseException e){
-                        e.printStackTrace();
-                    }
+        ThisApplication.HANDLER.post(() -> {
+            if (edtGoal.getText().toString().length() > 0){
+                try{
+                    goalValue = usFormat.parse(edtGoal.getText().toString().trim()).longValue();
+                }catch(ParseException e){
+                    e.printStackTrace();
                 }
+            }
 
-                if (edtCurrent.getText().toString().length() > 0){
-                    try{
-                        currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
-                    }catch(ParseException e){
-                        e.printStackTrace();
-                    }
+            if (edtCurrent.getText().toString().length() > 0){
+                try{
+                    currentValue = usFormat.parse(edtCurrent.getText().toString().trim()).longValue();
+                }catch(ParseException e){
+                    e.printStackTrace();
                 }
+            }
 
-                if (edtCurrent.getText().toString().trim().isEmpty()) {
+            if (edtCurrent.getText().toString().trim().isEmpty()) {
+                txtOutput.setVisibility(View.INVISIBLE);
+                displayError(lytCurrent, getString(ir.Parka.keychi.R.string.str_current_error), true);
+            } else {
+                if (goalValue <= currentValue) {
                     txtOutput.setVisibility(View.INVISIBLE);
-                    displayError(lytCurrent, getString(ir.Parka.keychi.R.string.str_current_error), true);
+                    displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
+                    displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
+                    isErrorSet = true;
+                } else if ((inflationValue - profitValue) * goalValue / 100 > (goalValue - currentValue)) {
+                    txtOutput.setVisibility(View.INVISIBLE);
+                    displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
+                    displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
+                    isErrorSet = true;
                 } else {
-                    if (goalValue <= currentValue) {
-                        txtOutput.setVisibility(View.INVISIBLE);
-                        displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
-                        displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_unnecessary_saving), true);
-                        isErrorSet = true;
-                    } else if ((inflationValue - profitValue) * goalValue / 100 > (goalValue - currentValue)) {
-                        txtOutput.setVisibility(View.INVISIBLE);
-                        displayError(lytCurrent, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
-                        displayError(lytGoal, getString(ir.Parka.keychi.R.string.err_wrong_method), true);
-                        isErrorSet = true;
-                    } else {
-                        displayError(lytCurrent, null, false);
+                    displayError(lytCurrent, null, false);
 
-                        if (isErrorSet) {
-                            displayError(lytGoal, null, false);
-                            isErrorSet = false;
-                        }
-
-                        submitForm();
+                    if (isErrorSet) {
+                        displayError(lytGoal, null, false);
+                        isErrorSet = false;
                     }
+
+                    submitForm();
                 }
             }
         });
     }
 
     private void validateProfit() {
-        ThisApplication.HANDLER.post(new Runnable() {
-
-            @Override
-            public void run() {
-                profitValue = edtProfit.getCurrentValue();
-                if (edtProfit.getCurrentValue() >= edtInflation.getCurrentValue()) {
-                    edtProfit.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
-                    edtInflation.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
-                    txtOutput.setVisibility(View.INVISIBLE);
-                } else {
-                    edtProfit.displayError(null, false);
-                    edtInflation.displayError(null, false);
-                    submitForm();
-                }
+        ThisApplication.HANDLER.post(() -> {
+            profitValue = edtProfit.getCurrentValue();
+            if (edtProfit.getCurrentValue() >= edtInflation.getCurrentValue()) {
+                edtProfit.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
+                edtInflation.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
+                txtOutput.setVisibility(View.INVISIBLE);
+            } else {
+                edtProfit.displayError(null, false);
+                edtInflation.displayError(null, false);
+                submitForm();
             }
         });
     }
 
     private void validateInflation() {
-        ThisApplication.HANDLER.post(new Runnable() {
-
-            @Override
-            public void run() {
-                inflationValue = edtInflation.getCurrentValue();
-                if (edtProfit.getCurrentValue() >= edtInflation.getCurrentValue()) {
-                    edtProfit.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
-                    edtInflation.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
-                    txtOutput.setVisibility(View.INVISIBLE);
-                } else {
-                    edtInflation.displayError(null, false);
-                    edtProfit.displayError(null, false);
-                    submitForm();
-                }
+        ThisApplication.HANDLER.post(() -> {
+            inflationValue = edtInflation.getCurrentValue();
+            if (edtProfit.getCurrentValue() >= edtInflation.getCurrentValue()) {
+                edtProfit.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
+                edtInflation.displayError(getString(ir.Parka.keychi.R.string.err_inflation_less_than_profit), true);
+                txtOutput.setVisibility(View.INVISIBLE);
+            } else {
+                edtInflation.displayError(null, false);
+                edtProfit.displayError(null, false);
+                submitForm();
             }
         });
     }
 
     private void validateDate() {
-        ThisApplication.HANDLER.post(new Runnable() {
-
-            @Override
-            public void run() {
-                yearValue = edtDate.getYearValue();
-                monthValue = edtDate.getMonthValue();
-                if (yearValue == 0 && (monthValue == 0 || monthValue == 1)) {
-                    edtDate.displayErrorMonth(getString(ir.Parka.keychi.R.string.err_zero_year_month), true);
-                    edtDate.displayErrorYear(getString(ir.Parka.keychi.R.string.err_zero_year_month), true);
-                    txtOutput.setVisibility(View.INVISIBLE);
-                } else {
-                    edtDate.displayErrorMonth(null, false);
-                    submitForm();
-                }
+        ThisApplication.HANDLER.post(() -> {
+            yearValue = edtDate.getYearValue();
+            monthValue = edtDate.getMonthValue();
+            if (yearValue == 0 && (monthValue == 0 || monthValue == 1)) {
+                edtDate.displayErrorMonth(getString(ir.Parka.keychi.R.string.err_zero_year_month), true);
+                edtDate.displayErrorYear(getString(ir.Parka.keychi.R.string.err_zero_year_month), true);
+                txtOutput.setVisibility(View.INVISIBLE);
+            } else {
+                edtDate.displayErrorMonth(null, false);
+                submitForm();
             }
         });
     }
@@ -396,7 +373,7 @@ public class FragmentCalculate extends Fragment {
             yearState[yearCnt] = currentState * (1.0f + profit / 100.0f);
 
             savingValue = ((yearPrice[yearCnt] - yearState[yearCnt]));
-            savingValue /= ((yearCnt + 1) * 12) + ((((yearCnt + 1) * 12) * (((yearCnt + 1) * 12) + 1)) * profit / 100.0f) / 24;
+            savingValue = savingValue / ((yearCnt + 1) * 12) + ((((yearCnt + 1) * 12) * (((yearCnt + 1) * 12) + 1)) * profit / 100.0f) / 24;
 //            Toast.makeText(getActivity().getApplicationContext(), " " + savingValue, Toast.LENGTH_LONG).show();
 
             currentPrice = yearPrice[yearCnt];
