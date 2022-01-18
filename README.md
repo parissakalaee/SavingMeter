@@ -3,24 +3,32 @@ This is simply one of my old Android projects in Java (the first one :-)), which
 
 ## Table of Contents
 * [General Info](#general-information)
+* [Features](#features)
 * [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
 * [Contact](#contact)
+
 
 ## General Information
 - I designed this project to help people track the value of saved money (i.e. in bank account) vs. the highly variable inflation rate in Iran.
 
+
+## Features
+List the ready features:
+- Calculate the amount of saving money based on variable Bank interest, Iran Inflation rate and the favorite goal time.
+- Handy and Simple to use UI based on Google Material Design. 
+
+I recently decided to practice writing code in Kotlin (after Udacity Android Kotlin Developer course), so I want to upgrade this project code, step by step to Kotlin.
+### TO-DO:
+- 
+
+
 ## Project Status
-Project is: _in progress_ 
+-Project is: _in progress_ 
 
 
 ## Room for Improvement
-I recently decided to improve my knowledge about Kotlin (after Udacity Android Kotlin Developer course), so I want to upgrade this project code, step by step to Kotlin.
+
 
 
 ## Acknowledgements
 - Many thanks to my old team-mate Saber Nourizadeh to help me with the idea and testing.
-
-
-## Contact
-Created by [@parissa.kalaee] - feel free to contact me!
