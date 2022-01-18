@@ -23,4 +23,4 @@ I recently decided to improve my knowledge about Kotlin (after Udacity Android K
 
 
 ## Contact
-Created by [@parissa.kalaee](parissa.kalaee@gmail.com) - feel free to contact me!
+Created by [@parissa.kalaee] - feel free to contact me!
