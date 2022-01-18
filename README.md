@@ -5,7 +5,7 @@ This is simply one of my old Android projects in Java (the first one :-)), which
 * [General Info](#general-information)
 * [Features](#features)
 * [Project Status](#project-status)
-* [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
 
 
 ## General Information
@@ -17,17 +17,9 @@ List the ready features:
 - Calculate the amount of saving money based on variable Bank interest, Iran Inflation rate and the favorite goal time.
 - Handy and Simple to use UI based on Google Material Design. 
 
-I recently decided to practice writing code in Kotlin (after Udacity Android Kotlin Developer course), so I want to upgrade this project code, step by step to Kotlin.
-### TO-DO:
-- 
-
 
 ## Project Status
 -Project is: _in progress_ 
-
-
-## Room for Improvement
-
 
 
 ## Acknowledgements
